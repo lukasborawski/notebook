@@ -1,0 +1,19 @@
+@import 'variables';
+
+@mixin font-size($size: $font-base-size) {
+  font-size: ($size / 16) + rem !important;
+}
+@mixin line-height($line-height) {
+  line-height: ($line-height / 16) + rem;
+}
+@mixin appearance($value: none) {
+  appearance: $value;
+}
+@mixin font-face($font-face-name, $font-face-path) {
+  @font-face {
+    font-style: normal;
+    font-weight: normal;
+    font-family: $font-face-name;
+    src: url('#{$font-face-path}/#{$font-face-name}.woff') format('woff');
+  }
+}

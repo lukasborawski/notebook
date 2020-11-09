@@ -1,0 +1,5 @@
+$base-size: 14;
+$font-base-bold: '';
+$font-base-regular: 'Source Sans Pro', sans-serif;
+$font-base-size: #{$base-size / 16}rem;
+$font-base-line-height: #{20 / $base-size}rem;

@@ -1,0 +1,18 @@
+@import 'normalize';
+
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800|Source+Sans+Pro:300,400,600,700&display=swap');
+
+html {
+  height: 100%;
+  font-size: 100%;
+  font-family: $font-base-regular;
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+body {
+  #bulma-container {
+    @import 'bulma';
+  }
+}

@@ -1,0 +1,79 @@
+@charset 'utf-8';
+@import 'variables';
+/*
+--------------------------------
+Bulma variables
+--------------------------------
+*/
+$family-primary: $font-base-regular;
+$family-secondary: $font-base-regular;
+
+$pink: #fa7c91;
+$brown: #757763;
+$purple: #8a4d76;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+$size-factor: 1rem;
+$size-1: (5rem - $size-factor);
+$size-2: (4.5rem - $size-factor);
+$size-3: (4rem - $size-factor);
+$size-4: (3.5rem - $size-factor);
+$size-5: (3rem - $size-factor);
+$size-6: (2.5rem - $size-factor);
+$size-7: (2rem - $size-factor);
+
+$gap: 20px;
+$desktop: 720px + (2 * $gap);
+$section-padding: 1rem 0;
+$section-padding-medium: 2rem 0;
+$section-padding-large: 3rem 0;
+
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+/*
+--------------------------------
+Bulma modules
+--------------------------------
+*/
+
+@import '../../node_modules/bulma/sass/utilities/all';
+@import '../../node_modules/bulma/sass/base/all';
+@import '../../node_modules/bulma/sass/form/all';
+@import '../../node_modules/bulma/sass/layout/section';
+@import '../../node_modules/bulma/sass/grid/columns';
+@import '../../node_modules/bulma/sass/elements/button';
+@import '../../node_modules/bulma/sass/elements/container';
+
+
+/*
+--------------------------------
+Bulma rewrites
+--------------------------------
+*/
+.input {
+  outline: 0 none;
+  &:hover {
+    border-color: darkblue;
+  }
+}
+a {
+  &.button {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.title {
+  color: darkblue;
+}
+.is-danger.is-light {
+  background-color: #feecf0;
+  color: #cc0f35;
+}
+.container {
+  max-width: 720/16 + rem !important;
+}
