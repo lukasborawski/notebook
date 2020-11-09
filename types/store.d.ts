@@ -6,6 +6,5 @@ export interface MainState {
   $localForage: any
 }
 export interface NoteState {
-  note: Note | {}
   notes: Note[] | {}[]
 }

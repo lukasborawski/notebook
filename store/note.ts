@@ -3,7 +3,6 @@ import { MainState, NoteState } from '~/types/store'
 import { Note } from '~/types'
 
 export const state: NoteState = {
-  note: {},
   notes: [],
 }
 
@@ -18,8 +17,9 @@ const actions: ActionTree<NoteState, MainState> = {
     await (this as any).$localForage.setItem(id, JSON.stringify(payload))
     commit('setNotes', [...state.notes, payload])
   },
-  async removeNote({ state, commit }, id: string) {
-    console.log('remove item', id)
+  async removeNote({ state, commit }, $id: string) {
+    await $localForage.removeItem($id)
+    comit('setNotes', state.notes.filter((note: Note) => note.id !== $id) as Note[])
   },
   async getNotes({ state, commit }) {
     commit('setNotes', [])
