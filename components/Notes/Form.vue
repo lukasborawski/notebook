@@ -47,52 +47,48 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions } from 'vuex'
-import { Note } from '~/types'
+import { reactive, ref, Ref } from '@nuxtjs/composition-api'
 import { path } from '~/const'
-
-interface DataTypes {
-  path: {}
-  formData: Note
-  submitted: boolean
-  submitting: boolean
-}
+import useNotes from '~/composables/useNotes'
+import { Note } from '~/types'
 
 export default Vue.extend({
   name: 'AppForm',
-  data: (): DataTypes => ({
-    formData: {
+  setup() {
+    const formData: Note = reactive({
       id: '',
       title: '',
       note: '',
       date: new Date(),
-    },
-    path,
-    submitted: false,
-    submitting: false,
-  }),
-  methods: {
-    ...mapActions({
-      saveNote: 'note/saveNote',
-    }),
-    submit(): void {
-      this.submitting = true
+    })
+    const submitted: Ref<boolean> = ref(false)
+    const submitting: Ref<boolean> = ref(false)
+    const { saveNote } = useNotes()
+
+    const submit = (): void => {
+      submitting.value = true
       setTimeout(async () => {
         try {
-          await this.saveNote({
-            ...this.formData,
+          await saveNote({
+            ...formData,
             id: (Date.now() + Math.random()).toString().replace('.', ''),
           })
-          Object.assign((this as any).$data, (this as any).$options.data())
-          this.submitted = true
+          submitted.value = true
         } catch (error) {
           // eslint-disable-next-line
           console.log('something went wrong', error as Error)
         } finally {
-          this.submitting = false
+          submitting.value = false
         }
       }, 1000)
-    },
+    }
+    return {
+      path,
+      formData,
+      submitted,
+      submitting,
+      submit,
+    }
   },
 })
 </script>

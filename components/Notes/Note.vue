@@ -20,38 +20,39 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
-import { mapActions } from 'vuex'
 // @ts-ignore
 import dayjs from 'dayjs'
+import { Ref, ref, computed } from '@nuxtjs/composition-api'
 import { Note } from '~/types'
-
-const itemProp: PropOptions<Note> = {
-  type: Object,
-}
+import useNotes from '~/composables/useNotes'
 
 export default Vue.extend({
   name: 'AppNote',
   props: {
-    itemProp,
+    itemProp: {
+      type: Object,
+      default: () => {},
+    } as PropOptions<Note>,
   },
-  data: (): { visible: boolean } => ({
-    visible: true,
-  }),
-  computed: {
-    dateFormatted(): string {
-      return dayjs(this.itemProp.date).format('DD MMMM YYYY')
-    },
-  },
-  methods: {
-    ...mapActions({
-      removeNote: 'note/removeNote',
-    }),
-    remove(): void {
-      this.visible = false
+  setup({ itemProp }) {
+    const visible: Ref<boolean> = ref(true)
+    const dateFormatted = computed(() =>
+      dayjs((itemProp as Note).date).format('DD MMMM YYYY')
+    )
+    const { removeNote } = useNotes()
+
+    const remove = (): void => {
+      const { id } = itemProp as Note
+      visible.value = false
       setTimeout(() => {
-        this.removeNote(this.itemProp.id)
+        removeNote(id)
       }, 500)
-    },
+    }
+    return {
+      visible,
+      dateFormatted,
+      remove,
+    }
   },
 })
 </script>

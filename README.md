@@ -1,6 +1,6 @@
 # Notebook App 
 ### Vue Composition API usage example
-Switch to `capi` branch to see Composition API usage against Vuex and regular Options API.
+Switch to `master` branch to see Vuex and regular Options API usage against Composition API.
 
 ## Build Setup
 

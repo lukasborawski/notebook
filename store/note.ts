@@ -15,14 +15,16 @@ const mutations: MutationTree<NoteState> = {
 const actions: ActionTree<NoteState, MainState> = {
   async saveNote({ state, commit }, payload: Note) {
     const { id } = payload
+    // JSON stringify add later/ask how to pass object
     await (this as any).$localForage.setItem(id, JSON.stringify(payload))
     commit('setNotes', [...state.notes, payload])
   },
   async removeNote({ state, commit }, id: string) {
-    console.log('remove item', id)
+    // suggest to filter array of notes
+    await (this as any).$localForage.removeItem(id)
   },
   async getNotes({ state, commit }) {
-    commit('setNotes', [])
+    commit('setNotes', []) // add later as a bug of empty array
     if ((this as any).$localForage) {
       const keys = await (this as any).$localForage.keys()
       keys.map(async (key: string) => {

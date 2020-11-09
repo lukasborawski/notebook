@@ -25,7 +25,6 @@ export default Vue.extend({
   props: {
     notesProp,
   },
-  data: () => ({}),
 })
 </script>
 

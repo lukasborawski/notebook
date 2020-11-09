@@ -7,5 +7,5 @@ export interface MainState {
 }
 export interface NoteState {
   note: Note | {}
-  notes: Note[] | {}[]
+  notes: Note[]
 }
