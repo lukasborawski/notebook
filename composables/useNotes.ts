@@ -7,7 +7,7 @@ import {
 import { NoteState } from '~/types/store'
 import { Note } from '~/types'
 
-export const state: NoteState = reactive({
+const state: NoteState = reactive({
   note: {},
   notes: [],
 })
